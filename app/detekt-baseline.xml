@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:Color.kt$0XFFF0E4D9</ID>
+    <ID>MagicNumber:Color.kt$0xFF776E65</ID>
+    <ID>MagicNumber:Color.kt$0xFFFAF8EE</ID>
+    <ID>MagicNumber:Color.kt$0xFFbfab9d</ID>
+    <ID>MagicNumber:GameManager.kt$GameManager$0.9f</ID>
+    <ID>MagicNumber:GameManager.kt$GameManager$2048</ID>
+    <ID>MagicNumber:GameManager.kt$GameManager$4</ID>
+    <ID>MagicNumber:Layer.kt$Layer.Companion$3.0f</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0.5f</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xff3c3a32</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xff776e65</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffedc22e</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffedc53f</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffedc850</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffedcc61</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffedcf72</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffede0c8</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xffeee4da</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xfff2b179</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xfff59563</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xfff65e3b</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xfff67c5f</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$0xfff8f6f2</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$1.2f</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$1024</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$128</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$16</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$2048</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$256</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$32</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$4</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$512</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$64</ID>
+    <ID>MagicNumber:TileRenderer.kt$TileRendererInstance$8</ID>
+    <ID>NestedBlockDepth:GameManager.kt$GameManager$fun move(direction: Direction)</ID>
+    <ID>NestedBlockDepth:GameManager.kt$GameManager$private fun tileMatchesAvailable(): Boolean</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val backgroundColor = 0xffbfab9dL</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val cornerRadius = 4</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val innerPadding = 4</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val popupBackgroundOverColor = 0x80ffffffL</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val popupBackgroundWinColor = 0xa0edc301L</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val popupMessageFontSize = 56</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val popupMessageOverColor = 0xff776e65L</ID>
+    <ID>TopLevelPropertyNaming:Board.kt$private const val popupMessageWinColor = 0xffffffffL</ID>
+    <ID>TopLevelPropertyNaming:BoardBackground.kt$private const val bgTileColor = 0xffcec1b2</ID>
+    <ID>TopLevelPropertyNaming:BoardBackground.kt$private const val cornerRadius = 4</ID>
+    <ID>TopLevelPropertyNaming:BoardBackground.kt$private const val fixFactor = 5</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val headerSpacing = 4</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelColor = 0xffbfab9d</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelCornerRadius = 2</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelHeight = 48</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelPadding = 8</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelTitleColor = 0xfff0e4d9</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelTitlePaddingBottom = 28</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val panelValueColor = 0xffffffff</ID>
+    <ID>TopLevelPropertyNaming:Header.kt$private const val titleColor = 0xff776e65</ID>
+    <ID>TopLevelPropertyNaming:Tile.kt$private const val tileCornerRadius = 4</ID>
+    <ID>TopLevelPropertyNaming:Tile.kt$private const val tilePadding = 4</ID>
+    <ID>UnusedPrivateMember:Board.kt$@Preview @Composable private fun BoardEmptyPreview()</ID>
+    <ID>UnusedPrivateMember:Board.kt$@Preview @Composable private fun BoardGameOverPreview()</ID>
+    <ID>UnusedPrivateMember:Board.kt$@Preview @Composable private fun BoardWonPreview()</ID>
+    <ID>UnusedPrivateMember:GameScreen.kt$@Preview @Composable private fun GamePreview()</ID>
+    <ID>UnusedPrivateMember:Header.kt$@Preview @Composable private fun HeaderPreview()</ID>
+  </CurrentIssues>
+</SmellBaseline>

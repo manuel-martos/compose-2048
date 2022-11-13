@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Compose 2048</string>
+    <string name="app_name_short">2048</string>
+
+    <string name="header_score">Score</string>
+    <string name="header_best">Best</string>
+
+    <string name="sub_header_new_game">New game</string>
+
+    <string name="popup_message_win">You win!</string>
+    <string name="popup_message_game_over">Game over!</string>
+    <string name="popup_try_again">Try again</string>
+</resources>
