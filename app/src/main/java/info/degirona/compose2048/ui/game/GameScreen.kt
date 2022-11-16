@@ -5,12 +5,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -21,17 +21,20 @@ import info.degirona.compose2048.game.StorageManagerImpl
 import info.degirona.compose2048.ui.board.Board
 import info.degirona.compose2048.ui.board.BoardRendererImpl
 import info.degirona.compose2048.ui.theme.Compose2048Theme
+import kotlinx.coroutines.delay
 
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
     size: Int = 4,
-    viewModel: GameScreenViewModel = viewModel(factory = GameScreenViewModelFactory(
-        GameManager(
-            size,
-            StorageManagerImpl(LocalContext.current)
+    viewModel: GameScreenViewModel = viewModel(
+        factory = GameScreenViewModelFactory(
+            GameManager(
+                size,
+                StorageManagerImpl(LocalContext.current)
+            )
         )
-    )),
+    ),
 ) {
     Box(
         modifier = modifier
@@ -51,20 +54,15 @@ fun GameScreen(
         Board(
             maxRows = size,
             maxCols = size,
-            onTryAgainClicked =  { viewModel.restartGame() },
+            onTryAgainClicked = { viewModel.restartGame() },
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxSize()
-                .composed {
-                    if (!viewModel.won && !viewModel.over) {
-                        Modifier.dragDetector(
-                            dragOffset = rememberDragOffset(),
-                            onDragFinished = { dragOffset -> viewModel.applyDragGesture(dragOffset) }
-                        )
-                    } else {
-                        Modifier
-                    }
-                },
+                .dragDetector(
+                    enabled = !viewModel.won && !viewModel.over,
+                    dragOffset = rememberDragOffset(),
+                    onDragFinished = { dragOffset -> viewModel.applyDragGesture(dragOffset) }
+                ),
             won = viewModel.won,
             over = viewModel.over,
         ) {
@@ -76,15 +74,18 @@ fun GameScreen(
 }
 
 internal fun Modifier.dragDetector(
+    enabled: Boolean,
     dragOffset: MutableState<Offset>,
     onDragFinished: (Offset) -> Unit,
 ) = pointerInput(Unit) {
-    detectDragGestures(
-        onDragStart = { dragOffset.value = Offset(0f, 0f) },
-        onDragEnd = { onDragFinished(dragOffset.value) }
-    ) { change, dragAmount ->
-        change.consume()
-        dragOffset.value += Offset(dragAmount.x, dragAmount.y)
+    if (enabled) {
+        detectDragGestures(
+            onDragStart = { dragOffset.value = Offset(0f, 0f) },
+            onDragEnd = { onDragFinished(dragOffset.value) }
+        ) { change, dragAmount ->
+            change.consume()
+            dragOffset.value += Offset(dragAmount.x, dragAmount.y)
+        }
     }
 }
 
