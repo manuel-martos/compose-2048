@@ -13,7 +13,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import info.degirona.compose2048.ui.board.BoardScope
-import info.degirona.compose2048.ui.board.BoardScopeInstance
 import info.degirona.compose2048.ui.board.Layer
 import info.degirona.compose2048.ui.data.TileModel
 
@@ -23,37 +22,35 @@ private const val MERGE_DURATION = 200
 
 interface TileRenderer {
     @Composable
-    fun TileModel.RenderNewTile(fraction: Float)
+    fun BoardScope.RenderNewTile(tileModel: TileModel)
 
     @Composable
-    fun TileModel.RenderStaticTile(fraction: Float)
+    fun BoardScope.RenderStaticTile(tileModel: TileModel)
 
     @Composable
-    fun TileModel.RenderSwipedTile(fraction: Float)
+    fun BoardScope.RenderSwipedTile(tileModel: TileModel)
 
     @Composable
-    fun TileModel.RenderMergedTile(fraction: Float)
+    fun BoardScope.RenderMergedTile(tileModel: TileModel)
 }
 
-object TileRendererInstance :
-    TileRenderer,
-    BoardScope by BoardScopeInstance {
+object TileRendererInstance : TileRenderer {
 
     @Composable
-    override fun TileModel.RenderNewTile(fraction: Float) {
-        key(this.id) {
+    override fun BoardScope.RenderNewTile(tileModel: TileModel) {
+        key(tileModel.id) {
             val scale = remember { Animatable(0f) }
             val alpha = remember { Animatable(0f) }
             Tile(
-                fraction = fraction,
-                value = curValue.toString(),
-                color = curValue.toTextColor(),
-                fontSize = curValue.toFontSize(),
-                backgroundColor = curValue.toBackgroundColor(),
+                fraction = tileFraction,
+                value = tileModel.curValue.toString(),
+                color = tileModel.curValue.toTextColor(),
+                fontSize = tileModel.curValue.toFontSize(),
+                backgroundColor = tileModel.curValue.toBackgroundColor(),
                 modifier = Modifier
                     .boardCell(
-                        row = curPosition.row,
-                        col = curPosition.col,
+                        row = tileModel.curPosition.row,
+                        col = tileModel.curPosition.col,
                         layer = Layer.AnimationLayer
                     )
                     .scale(scale.value)
@@ -81,18 +78,18 @@ object TileRendererInstance :
     }
 
     @Composable
-    override fun TileModel.RenderStaticTile(fraction: Float) {
-        key(this.id) {
+    override fun BoardScope.RenderStaticTile(tileModel: TileModel) {
+        key(tileModel.id) {
             Tile(
-                fraction = fraction,
-                value = curValue.toString(),
-                color = curValue.toTextColor(),
-                fontSize = curValue.toFontSize(),
-                backgroundColor = curValue.toBackgroundColor(),
+                fraction = tileFraction,
+                value = tileModel.curValue.toString(),
+                color = tileModel.curValue.toTextColor(),
+                fontSize = tileModel.curValue.toFontSize(),
+                backgroundColor = tileModel.curValue.toBackgroundColor(),
                 modifier = Modifier
                     .boardCell(
-                        row = curPosition.row,
-                        col = curPosition.col,
+                        row = tileModel.curPosition.row,
+                        col = tileModel.curPosition.col,
                         layer = Layer.CellLayer
                     )
             )
@@ -100,16 +97,16 @@ object TileRendererInstance :
     }
 
     @Composable
-    override fun TileModel.RenderSwipedTile(fraction: Float) {
-        key(this.id) {
-            val row = remember { Animatable(prevPosition!!.row) }
-            val col = remember { Animatable(prevPosition!!.col) }
+    override fun BoardScope.RenderSwipedTile(tileModel: TileModel) {
+        key(tileModel.id) {
+            val row = remember { Animatable(tileModel.prevPosition!!.row) }
+            val col = remember { Animatable(tileModel.prevPosition!!.col) }
             Tile(
-                fraction = fraction,
-                value = curValue.toString(),
-                color = curValue.toTextColor(),
-                fontSize = curValue.toFontSize(),
-                backgroundColor = curValue.toBackgroundColor(),
+                fraction = tileFraction,
+                value = tileModel.curValue.toString(),
+                color = tileModel.curValue.toTextColor(),
+                fontSize = tileModel.curValue.toFontSize(),
+                backgroundColor = tileModel.curValue.toBackgroundColor(),
                 modifier = Modifier
                     .boardCell(
                         row = row.value,
@@ -117,18 +114,18 @@ object TileRendererInstance :
                         layer = Layer.AnimationLayer
                     )
             )
-            if (row.value != curPosition.row) {
+            if (row.value != tileModel.curPosition.row) {
                 LaunchedEffect(this) {
                     row.animateTo(
-                        targetValue = curPosition.row,
+                        targetValue = tileModel.curPosition.row,
                         animationSpec = tween(durationMillis = SWIPE_DURATION)
                     )
                 }
             }
-            if (col.value != curPosition.col) {
+            if (col.value != tileModel.curPosition.col) {
                 LaunchedEffect(this) {
                     col.animateTo(
-                        targetValue = curPosition.col,
+                        targetValue = tileModel.curPosition.col,
                         animationSpec = tween(durationMillis = SWIPE_DURATION)
                     )
                 }
@@ -137,19 +134,19 @@ object TileRendererInstance :
     }
 
     @Composable
-    override fun TileModel.RenderMergedTile(fraction: Float) {
-        key(this.id) {
+    override fun BoardScope.RenderMergedTile(tileModel: TileModel) {
+        key(tileModel.id) {
             val scale = remember { Animatable(0f) }
             Tile(
-                fraction = fraction,
-                value = curValue.toString(),
-                color = curValue.toTextColor(),
-                fontSize = curValue.toFontSize(),
-                backgroundColor = curValue.toBackgroundColor(),
+                fraction = tileFraction,
+                value = tileModel.curValue.toString(),
+                color = tileModel.curValue.toTextColor(),
+                fontSize = tileModel.curValue.toFontSize(),
+                backgroundColor = tileModel.curValue.toBackgroundColor(),
                 modifier = Modifier
                     .boardCell(
-                        row = curPosition.row,
-                        col = curPosition.col,
+                        row = tileModel.curPosition.row,
+                        col = tileModel.curPosition.col,
                         layer = Layer.MergeLayer
                     )
                     .scale(scale.value),

@@ -47,7 +47,7 @@ fun Board(
                 .background(Color(backgroundColor), RoundedCornerShape(cornerRadius.dp))
                 .padding(innerPadding.dp)
                 .boardBackground(maxRows, maxCols),
-            content = { BoardScopeInstance.content() }
+            content = { BoardScopeImpl(maxRows, maxCols).content() }
         )
         AnimatedVisibility(
             visible = won || over,

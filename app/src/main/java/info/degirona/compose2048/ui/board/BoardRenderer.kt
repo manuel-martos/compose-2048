@@ -7,18 +7,18 @@ import info.degirona.compose2048.ui.tile.TileRendererInstance
 
 interface BoardRenderer {
     @Composable
-    fun BoardModel.Render(fraction: Float)
+    fun BoardScope.Render(boardModel: BoardModel)
 }
 
-internal object BoardRendererImpl :
+internal object BoardRendererInstance :
     BoardRenderer,
     TileRenderer by TileRendererInstance {
 
     @Composable
-    override fun BoardModel.Render(fraction: Float) {
-        staticTiles.forEach { tileModel -> tileModel.RenderStaticTile(fraction) }
-        swipedTiles.forEach { tileModel -> tileModel.RenderSwipedTile(fraction) }
-        mergedTiles.forEach { tileModel -> tileModel.RenderMergedTile(fraction) }
-        newTiles.forEach { tileModel -> tileModel.RenderNewTile(fraction) }
+    override fun BoardScope.Render(boardModel: BoardModel) {
+        boardModel.staticTiles.forEach { tileModel -> RenderStaticTile(tileModel) }
+        boardModel.swipedTiles.forEach { tileModel -> RenderSwipedTile(tileModel) }
+        boardModel.mergedTiles.forEach { tileModel -> RenderMergedTile(tileModel) }
+        boardModel.newTiles.forEach { tileModel -> RenderNewTile(tileModel) }
     }
 }

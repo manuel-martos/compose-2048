@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,9 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import info.degirona.compose2048.game.GameManager
 import info.degirona.compose2048.game.StorageManagerImpl
 import info.degirona.compose2048.ui.board.Board
-import info.degirona.compose2048.ui.board.BoardRendererImpl
+import info.degirona.compose2048.ui.board.BoardRendererInstance
 import info.degirona.compose2048.ui.theme.Compose2048Theme
-import kotlinx.coroutines.delay
 
 @Composable
 fun GameScreen(
@@ -66,8 +64,8 @@ fun GameScreen(
             won = viewModel.won,
             over = viewModel.over,
         ) {
-            BoardRendererImpl.apply {
-                viewModel.boardModel.Render(1f / size)
+            BoardRendererInstance.apply {
+                Render(viewModel.boardModel)
             }
         }
     }
