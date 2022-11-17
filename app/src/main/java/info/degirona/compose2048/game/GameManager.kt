@@ -45,7 +45,7 @@ class GameManager(
     private val startTiles: Int = 2
 ) {
     private var grid = Grid(size)
-    private val gameData = GameData()
+    private var gameData = GameData()
 
     init {
         grid.addStartTiles(startTiles)
@@ -55,6 +55,7 @@ class GameManager(
 
     fun restart() {
         grid = Grid(size)
+        gameData = GameData()
         grid.addStartTiles(startTiles)
     }
 
